@@ -4,12 +4,14 @@ interface AnimationSettings {
     enableSidebar: boolean;
     enableTooltip: boolean;
     enableTab: boolean;
+    enableModal: boolean;
 }
 
 const DEFAULT_SETTINGS: AnimationSettings = {
     enableSidebar: false,
     enableTooltip: false,
     enableTab: false,
+    enableModal: false
 }
 
 export default class AnimationPlugin extends Plugin {
@@ -38,6 +40,10 @@ export default class AnimationPlugin extends Plugin {
 
         if(this.settings.enableTab) {
             document.body.classList.add('enable-tab');
+        }
+
+        if(this.settings.enableModal) {
+            document.body.classList.add('enable-modal');
         }
 
     }
@@ -94,5 +100,14 @@ class AnimationSettingTab extends PluginSettingTab {
                     await this.plugin.saveSettings();
                 }));
 
+        new Setting(containerEl)
+            .setName('Enable Modal Animation')
+            .setDesc('Toggle modal transition animations')
+            .addToggle(toggle => toggle
+                .setValue(this.plugin.settings.enableModal)
+                .onChange(async (value) => {
+                    this.plugin.settings.enableModal = value;
+                    await this.plugin.saveSettings();
+                }));
     }
 }
