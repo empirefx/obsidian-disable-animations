@@ -10,9 +10,8 @@
   transition: var(--anim-duration-none) !important;
 }
 
-.enable-tab .workspace-tabs,
 .enable-tab .workspace-tab-header,
-.enable-tab .workspace-tab-container {
+.enable-tab .workspace-tab-header-container {
   animation: unset !important;
   transition: var(--anim-duration-none) !important;
 }
