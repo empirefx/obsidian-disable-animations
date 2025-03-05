@@ -1,3 +1,5 @@
+.enable-sidebar .workspace-split.mod-horizontal,
+.enable-sidebar .workspace-ribbon.mod-left,
 .enable-sidebar .workspace-split.mod-left-split,
 .enable-sidebar .workspace-split.mod-right-split {
   animation: unset !important;
@@ -11,6 +13,8 @@
 }
 
 .enable-tab .workspace-tab-header,
+.enable-tab .workspace-tab-header-inner-title,
+.enable-tab .workspace-tab-container,
 .enable-tab .workspace-tab-header-container {
   animation: unset !important;
   transition: var(--anim-duration-none) !important;
@@ -22,7 +26,8 @@
 .enable-modal .prompt,
 .enable-modal .search-pane,
 .enable-modal .suggestion-container,
-.enable-modal .suggestion-modal {
+.enable-modal .suggestion-modal,
+.enable-modal .vertical-tab-nav-item {
   animation: unset !important;
   transition: var(--anim-duration-none) !important;
 }
