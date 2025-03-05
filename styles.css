@@ -21,7 +21,7 @@
 .enable-modal .modal-container,
 .enable-modal .prompt,
 .enable-modal .search-pane,
-/*.enable-modal .workspace-leaf,*/
+.enable-modal .suggestion-container,
 .enable-modal .suggestion-modal {
   animation: unset !important;
   transition: var(--anim-duration-none) !important;
