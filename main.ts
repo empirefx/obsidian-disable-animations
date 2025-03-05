@@ -3,11 +3,13 @@ import { Plugin, PluginSettingTab, App, Setting } from 'obsidian';
 interface AnimationSettings {
     enableSidebar: boolean;
     enableTooltip: boolean;
+    enableTab: boolean;
 }
 
 const DEFAULT_SETTINGS: AnimationSettings = {
     enableSidebar: false,
-    enableTooltip: false
+    enableTooltip: false,
+    enableTab: false,
 }
 
 export default class AnimationPlugin extends Plugin {
@@ -23,7 +25,7 @@ export default class AnimationPlugin extends Plugin {
 
     refreshStyles() {
         // Remove sidebar animation class first
-        document.body.classList.remove('enable-sidebar', 'enable-tooltip');
+        document.body.classList.remove('enable-sidebar', 'enable-tooltip', 'enable-tab', 'enable-modal');
 
         // Add class based on settings
         if (this.settings.enableSidebar) {
@@ -32,6 +34,10 @@ export default class AnimationPlugin extends Plugin {
 
         if(this.settings.enableTooltip) {
             document.body.classList.add('enable-tooltip');
+        }
+
+        if(this.settings.enableTab) {
+            document.body.classList.add('enable-tab');
         }
 
     }
@@ -77,5 +83,16 @@ class AnimationSettingTab extends PluginSettingTab {
                     this.plugin.settings.enableTooltip = value;
                     await this.plugin.saveSettings();
                 }));
+
+        new Setting(containerEl)
+            .setName('Enable Tab Animation')
+            .setDesc('Toggle tab transition animations')
+            .addToggle(toggle => toggle
+                .setValue(this.plugin.settings.enableTab)
+                .onChange(async (value) => {
+                    this.plugin.settings.enableTab = value;
+                    await this.plugin.saveSettings();
+                }));
+
     }
 }

@@ -1,8 +1,28 @@
 .enable-sidebar .workspace-split.mod-left-split,
 .enable-sidebar .workspace-split.mod-right-split {
-    transition: var(--anim-duration-none) !important;
+  animation: unset !important;
+  transition: var(--anim-duration-none) !important;
 }
 
 .enable-tooltip .tooltip {
   animation: unset !important;
+  transition: var(--anim-duration-none) !important;
+}
+
+.enable-tab .workspace-tabs,
+.enable-tab .workspace-tab-header,
+.enable-tab .workspace-tab-container {
+  animation: unset !important;
+  transition: var(--anim-duration-none) !important;
+}
+
+.enable-modal .modal,
+.enable-modal .modal-bg,
+.enable-modal .modal-container,
+.enable-modal .prompt,
+.enable-modal .search-pane,
+/*.enable-modal .workspace-leaf,*/
+.enable-modal .suggestion-modal {
+  animation: unset !important;
+  transition: var(--anim-duration-none) !important;
 }
