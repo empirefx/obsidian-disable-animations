@@ -1,3 +1,8 @@
+.enable-global * {
+  animation: none !important;
+  transition: none !important;
+}
+
 .enable-sidebar .workspace-split.mod-horizontal,
 .enable-sidebar .workspace-ribbon.mod-left,
 .enable-sidebar .workspace-split.mod-left-split,

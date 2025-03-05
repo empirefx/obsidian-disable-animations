@@ -1,6 +1,7 @@
 import { Plugin, PluginSettingTab, App, Setting } from 'obsidian';
 
 interface AnimationSettings {
+    enableGlobal: boolean;
     enableSidebar: boolean;
     enableTooltip: boolean;
     enableTab: boolean;
@@ -8,6 +9,7 @@ interface AnimationSettings {
 }
 
 const DEFAULT_SETTINGS: AnimationSettings = {
+    enableGlobal: false,
     enableSidebar: false,
     enableTooltip: false,
     enableTab: false,
@@ -27,9 +29,13 @@ export default class AnimationPlugin extends Plugin {
 
     refreshStyles() {
         // Remove sidebar animation class first
-        document.body.classList.remove('enable-sidebar', 'enable-tooltip', 'enable-tab', 'enable-modal');
+        document.body.classList.remove('enableGlobal', 'enable-sidebar', 'enable-tooltip', 'enable-tab', 'enable-modal');
 
         // Add class based on settings
+        if (this.settings.enableGlobal) {
+            document.body.classList.add('enable-global');
+        }
+
         if (this.settings.enableSidebar) {
             document.body.classList.add('enable-sidebar');
         }
@@ -73,6 +79,16 @@ class AnimationSettingTab extends PluginSettingTab {
         containerEl.createEl('p', {
           text: 'Enable any of the options below for disable their animations.'
         });
+
+        new Setting(containerEl)
+            .setName('ALL (*)')
+            .setDesc('Toggles every CSS transitions and animations., this targets all elements (*) globaly. Toggle this OFF and reset Obsidian to see animations and transitions back.')
+            .addToggle(toggle => toggle
+                .setValue(this.plugin.settings.enableGlobal)
+                .onChange(async (value) => {
+                    this.plugin.settings.enableGlobal = value;
+                    await this.plugin.saveSettings();
+                }));
 
         new Setting(containerEl)
             .setName('Sidebar')
