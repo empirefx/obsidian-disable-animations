@@ -1,9 +1,11 @@
 import { Plugin, PluginSettingTab, App, Setting } from 'obsidian';
 
 interface AnimationSettings {
+    enableSidebar: boolean;
 }
 
 const DEFAULT_SETTINGS: AnimationSettings = {
+    enableSidebar: false,
 }
 
 export default class AnimationPlugin extends Plugin {
@@ -18,6 +20,13 @@ export default class AnimationPlugin extends Plugin {
     }
 
     refreshStyles() {
+        // Remove sidebar animation class first
+        document.body.classList.remove('enable-sidebar');
+
+        // Add class based on settings
+        if (this.settings.enableSidebar) {
+            document.body.classList.add('enable-sidebar');
+        }
 
 
     }
@@ -43,6 +52,16 @@ class AnimationSettingTab extends PluginSettingTab {
     display(): void {
         const { containerEl } = this;
         containerEl.empty();
+
+        new Setting(containerEl)
+            .setName('Enable Sidebar Animation')
+            .setDesc('Toggle sidebar transition animations')
+            .addToggle(toggle => toggle
+                .setValue(this.plugin.settings.enableSidebar)
+                .onChange(async (value) => {
+                    this.plugin.settings.enableSidebar = value;
+                    await this.plugin.saveSettings();
+                }));
 
     }
 }

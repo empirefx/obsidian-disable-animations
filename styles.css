@@ -1,8 +1,8 @@
-/*
+.enable-sidebar .workspace-split.mod-left-split,
+.enable-sidebar .workspace-split.mod-right-split {
+    transition: var(--anim-duration-none) !important;
+}
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
-
-If your plugin does not need CSS, delete this file.
-
-*/
+.enable-tooltip .tooltip {
+  animation: unset !important;
+}
