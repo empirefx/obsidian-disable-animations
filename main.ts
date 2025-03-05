@@ -2,10 +2,12 @@ import { Plugin, PluginSettingTab, App, Setting } from 'obsidian';
 
 interface AnimationSettings {
     enableSidebar: boolean;
+    enableTooltip: boolean;
 }
 
 const DEFAULT_SETTINGS: AnimationSettings = {
     enableSidebar: false,
+    enableTooltip: false
 }
 
 export default class AnimationPlugin extends Plugin {
@@ -21,13 +23,16 @@ export default class AnimationPlugin extends Plugin {
 
     refreshStyles() {
         // Remove sidebar animation class first
-        document.body.classList.remove('enable-sidebar');
+        document.body.classList.remove('enable-sidebar', 'enable-tooltip');
 
         // Add class based on settings
         if (this.settings.enableSidebar) {
             document.body.classList.add('enable-sidebar');
         }
 
+        if(this.settings.enableTooltip) {
+            document.body.classList.add('enable-tooltip');
+        }
 
     }
 
@@ -63,5 +68,14 @@ class AnimationSettingTab extends PluginSettingTab {
                     await this.plugin.saveSettings();
                 }));
 
+        new Setting(containerEl)
+            .setName('Enable Tooltip Animation')
+            .setDesc('Toggle tooltip transition animations')
+            .addToggle(toggle => toggle
+                .setValue(this.plugin.settings.enableTooltip)
+                .onChange(async (value) => {
+                    this.plugin.settings.enableTooltip = value;
+                    await this.plugin.saveSettings();
+                }));
     }
 }
