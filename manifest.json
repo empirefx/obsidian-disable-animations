@@ -5,6 +5,6 @@
 	"minAppVersion": "0.15.0",
 	"description": "Simple control over Obsidian UI animations.",
 	"author": "EFEX",
-	"authorUrl": "https://github.com/empirefx/obsidian-disable-animations",
+	"authorUrl": "https://github.com/empirefx",
 	"isDesktopOnly": false
 }
