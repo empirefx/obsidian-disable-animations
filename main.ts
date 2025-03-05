@@ -45,7 +45,6 @@ export default class AnimationPlugin extends Plugin {
         if(this.settings.enableModal) {
             document.body.classList.add('enable-modal');
         }
-
     }
 
     async loadSettings() {
@@ -70,8 +69,13 @@ class AnimationSettingTab extends PluginSettingTab {
         const { containerEl } = this;
         containerEl.empty();
 
+        containerEl.createEl('h3', { text: 'Disable Animations' });
+        containerEl.createEl('p', {
+          text: 'Enable any of the options below for disable their animations.'
+        });
+
         new Setting(containerEl)
-            .setName('Enable Sidebar Animation')
+            .setName('Sidebar')
             .setDesc('Toggle sidebar transition animations')
             .addToggle(toggle => toggle
                 .setValue(this.plugin.settings.enableSidebar)
@@ -81,7 +85,7 @@ class AnimationSettingTab extends PluginSettingTab {
                 }));
 
         new Setting(containerEl)
-            .setName('Enable Tooltip Animation')
+            .setName('Tooltip/Menu')
             .setDesc('Toggle tooltip transition animations')
             .addToggle(toggle => toggle
                 .setValue(this.plugin.settings.enableTooltip)
@@ -91,7 +95,7 @@ class AnimationSettingTab extends PluginSettingTab {
                 }));
 
         new Setting(containerEl)
-            .setName('Enable Tab Animation')
+            .setName('Tab')
             .setDesc('Toggle tab transition animations')
             .addToggle(toggle => toggle
                 .setValue(this.plugin.settings.enableTab)
@@ -101,7 +105,7 @@ class AnimationSettingTab extends PluginSettingTab {
                 }));
 
         new Setting(containerEl)
-            .setName('Enable Modal Animation')
+            .setName('Modal/Search/Suggestion')
             .setDesc('Toggle modal transition animations')
             .addToggle(toggle => toggle
                 .setValue(this.plugin.settings.enableModal)
