@@ -4,6 +4,7 @@
   transition: var(--anim-duration-none) !important;
 }
 
+.enable-tooltip .menu,
 .enable-tooltip .tooltip {
   animation: unset !important;
   transition: var(--anim-duration-none) !important;
